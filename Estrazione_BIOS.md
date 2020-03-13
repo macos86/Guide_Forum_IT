@@ -9,11 +9,11 @@ Scarica l'ultimo BIOS dal sito Web del tuo fornitore (anche se non stai utilizza
 
 ## Step 2
   
-  Nella tua macchina Windows/Mac/Linux, esegui [questo script](https://drive.google.com/open?id=1hjQzIEu8p8pe_HT8ECWvc8uoCizQl41c) con Python - (questo metodo potrebbe funzionare anche con le ultime versioni di Python) - aprite un terminale e digitate:
+  Nella tua macchina Windows/Mac/Linux, esegui [questo script](https://raw.githubusercontent.com/macos86/Guide_Forum_IT/master/ExtractDellBIOS.py) salvando il *raw* su un file di testo o scaricandolo in formato .py e lanciare Python - (questo metodo potrebbe funzionare anche con le ultime versioni, come python3 poiché è retrocompatibile) - aprite un terminale e digitate:
   
   `python2.7 biosextract.py bios_name.exe`
   
-  Sostituitr bios_name.exe with con il nome del vostro BIOS, nel mio caso ad esempio: 
+  Sostituite bios_name.exe with con il nome del vostro BIOS, nel mio caso ad esempio: 
   
   `python2.7 biosextract.py XPS_9350_1.12.2.exe`
   
