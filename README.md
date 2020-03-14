@@ -1,37 +1,49 @@
-## Welcome to GitHub Pages
+## Introduzione
 
-You can use the [editor on GitHub](https://github.com/macos86/Guide_Forum_IT/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Ecco come estrarre il file del bios dei laptop Dell dal file .exe (purtroppo finora sono stati gli unici che sono stato in grado di testare): questo metodo potrebbe essere funzionale anche per altri laptop, ma serve testare su altre piattaforme per avere conferma.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Step 1
 
-### Markdown
+Scarica l'ultimo BIOS dal sito Web del tuo fornitore (anche se non stai utilizzando l'ultimo aggiornamento del BIOS, l'offset del blocco CFG è lo stesso, ma considera l'aggiornamento all'ultima versione del BIOS prima di sbloccare il registro MSR e fai attenzione che questo sblocco dovrà essere ripetuto se il BIOS viene aggiornato **dopo** aver sbloccato il registro).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+## Step 2
 
-# Header 1
-## Header 2
-### Header 3
+	Nella tua macchina Windows/Mac/Linux, esegui [questo script](https://raw.githubusercontent.com/macos86/Guide_Forum_IT/master/ExtractDellBIOS.py) salvando il *raw* su un file di testo o scaricandolo in formato .py e lanciare Python - (questo metodo potrebbe funzionare anche con le ultime versioni, come python3 poiché è retrocompatibile) - aprite un terminale e digitate:
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+		`python2.7 biosextract.py bios_name.exe`	  `python2.7 biosextract.py bios_name.exe`
+		
+	Sostituite bios_name.exe with con il nome del vostro BIOS, nel mio caso ad esempio: 
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+	`python2.7 biosextract.py XPS_9350_1.12.2.exe`	  `python2.7 biosextract.py XPS_9350_1.12.2.exe`
+	
+## Step 3
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+	Ora procuratevi [questo file](https://github.com/LongSoft/PFSExtractor/releases/download/0.1.0/PFSExtractor_0.1.0.zip) della LongSoft and run this in a Windows machine (Non l'ho testato su Unix, quindi è preferibile un ambiente Windows nativo per eseguire questo script oppure si utilizzi g++ in un ambiente UNIX Like). Aprite il Command prompt, navigate sulla directory corretta (cd \Users\<your_username>\path\to\PFSextractor.exe) ed eseguite questo comando:
 
-### Jekyll Themes
+	`PFSextractor.exe bios_name.exe_decompressed.hdr`
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/macos86/Guide_Forum_IT/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+	Nel mio caso:
 
-### Support or Contact
+	`PFSextractor.exe XPS_9350_1.12.2.exe_decompressed.hdr`
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Step 4
+
+ Aprite la cartella creata da PFSextractor.exe e ordinate i file per dimensioni, il file `.payload` più grande dovrebbe essere il vostro BIOS UEFI.
+
+## Step 5
+
+Ora potete tornare alla guida di [khronokernel](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/extras/msr-lock) che tratta dello sblocco CFG (MSR 0xE2), dico questo qualora aveste dovuto fare tutto questo giro per estrarre il BIOS UEFI dal sito web del vostro produttore :D
+
+
+**Credits**
+
+[JimboBobB](https://forums.mydigitallife.net/members/jimbobobb.361587/) per lo script in python
+
+[Longsoft](https://github.com/Longsoft) per PFSExtractor
+
+[Il forum MacOS86](https://macos86.it) per aver messo a disposizione il loro repository
+
+[A23SS4NDRO](https://www.macos86.it/profile/996-a23ss4ndro/) per aver scritto questa guida
