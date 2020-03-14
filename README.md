@@ -8,30 +8,28 @@ Scarica l'ultimo BIOS dal sito Web del tuo fornitore (anche se non stai utilizza
 
 
 ## Step 2
+Nella tua macchina Windows/Mac/Linux, esegui [questo script](https://raw.githubusercontent.com/macos86/Guide_Forum_IT/master/ExtractDellBIOS.py) salvando il *raw* su un file di testo o scaricandolo in formato .py e lanciare Python - (questo metodo potrebbe funzionare anche con le ultime versioni, come python3 poiché è retrocompatibile) - aprite un terminale e digitate
+ 
+ `python2.7 biosextract.py bios_name.exe`
 
-	Nella tua macchina Windows/Mac/Linux, esegui [questo script](https://raw.githubusercontent.com/macos86/Guide_Forum_IT/master/ExtractDellBIOS.py) salvando il *raw* su un file di testo o scaricandolo in formato .py e lanciare Python - (questo metodo potrebbe funzionare anche con le ultime versioni, come python3 poiché è retrocompatibile) - aprite un terminale e digitate:
-
-
-		`python2.7 biosextract.py bios_name.exe`	  `python2.7 biosextract.py bios_name.exe`
-		
-	Sostituite bios_name.exe with con il nome del vostro BIOS, nel mio caso ad esempio: 
+Sostituite bios_name.exe with con il nome del vostro BIOS, nel mio caso ad esempio: 
 
 
-	`python2.7 biosextract.py XPS_9350_1.12.2.exe`	  `python2.7 biosextract.py XPS_9350_1.12.2.exe`
+	`python2.7 biosextract.py XPS_9350_1.12.2.exe`	 
 	
 ## Step 3
 
-	Ora procuratevi [questo file](https://github.com/LongSoft/PFSExtractor/releases/download/0.1.0/PFSExtractor_0.1.0.zip) della LongSoft and run this in a Windows machine (Non l'ho testato su Unix, quindi è preferibile un ambiente Windows nativo per eseguire questo script oppure si utilizzi g++ in un ambiente UNIX Like). Aprite il Command prompt, navigate sulla directory corretta (cd \Users\<your_username>\path\to\PFSextractor.exe) ed eseguite questo comando:
+Ora procuratevi [questo file](https://github.com/LongSoft/PFSExtractor/releases/download/0.1.0/PFSExtractor_0.1.0.zip) della LongSoft and run this in a Windows machine (Non l'ho testato su Unix, quindi è preferibile un ambiente Windows nativo per eseguire questo script oppure si utilizzi g++ in un ambiente UNIX Like). Aprite il Command prompt, navigate sulla directory corretta (cd \Users\<your_username>\path\to\PFSextractor.exe) ed eseguite questo comando:
 
 	`PFSextractor.exe bios_name.exe_decompressed.hdr`
 
-	Nel mio caso:
+Nel mio caso:
 
 	`PFSextractor.exe XPS_9350_1.12.2.exe_decompressed.hdr`
 
 ## Step 4
 
- Aprite la cartella creata da PFSextractor.exe e ordinate i file per dimensioni, il file `.payload` più grande dovrebbe essere il vostro BIOS UEFI.
+Aprite la cartella creata da PFSextractor.exe e ordinate i file per dimensioni, il file `.payload` più grande dovrebbe essere il vostro BIOS UEFI.
 
 ## Step 5
 
